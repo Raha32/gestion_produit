@@ -1,0 +1,137 @@
+/* Reglages html */
+html, body
+{
+     margin: 0px !important;
+     padding: 0px !important;
+
+}
+/* Fin reglages html */
+
+/* Reglages Background */
+body{
+    background-color:rgb(63, 63, 63);
+    color:white;
+}
+/* Fin reglages Background */
+
+/* Reglages Navbar */
+.navbar ul{
+    list-style-type:none;
+    margin:0;
+    padding:0;
+    overflow:hidden;
+    background-color: #333;
+}
+
+.navbar li{
+    float: left;
+}
+.navbar li a{
+    display:block;
+    color:white;
+    text-align:center;
+    padding:14px 16px;
+    text-decoration: none;
+}
+
+.navbar .deconnexion{
+    background-color:rgb(129, 35, 35);
+}
+
+.navbar .brand{
+    width:135px;
+    margin-right:10px;
+}
+
+.navbar li .nav-link:hover{
+    background-color: #111;
+}
+.navbar li .navbar-brand:hover{
+    transform: rotate(1deg);
+    font-weight:bold;
+}
+
+.navbar li.special{
+    float:right;
+}
+/* Fin reglages Navbar */
+
+/* Reglages Table */
+
+.titre-index{
+    padding:20px;
+}
+
+.flex-box{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+.table{
+    width:80%;
+    color:black;
+    background-color:#f2f2f2;
+    border-radius: 10px;
+    border-collapse:collapse;
+    font-size: larger;
+    
+}
+
+.table thead{
+    background-color: #111;
+    color:white;
+    border: none;
+    border-radius: 10px;
+    height:50px;
+
+}
+.table th,td{
+    text-align:center;
+    padding:14px 16px;
+}
+
+.table td img{
+    height:120px;
+    width:140px;
+}
+
+.fa-eye{
+    color:rgb(63, 63, 65);
+    text-decoration: none;
+    margin-right:30px;
+}
+
+.fa-eye:hover{
+    transform: scale(2);
+}
+
+.fa-file-pen{
+    color:rgb(187, 121, 0);
+    text-decoration: none;
+}
+
+.fa-file-pen:hover{
+    transform: scale(2);
+}
+
+/* Fin reglages table */
+
+/* Reglages cards home */
+
+.row{
+    display:flex;
+    overflow: hidden;
+    flex-wrap: wrap;
+    justify-content: center;
+    column-gap: 50px;
+}
+
+.row .card-exterior{
+    height:480px;
+    width:360px;
+}
+
+.card-exterior .card-img{
+    max-height:273px;
+}
+/* Fin reglages cards home */

@@ -1,0 +1,7 @@
+<div class="card-exterior">
+		<img src="{{ asset('images/' ~ product.image) }}" class="card-img" alt="...">
+				<span class="float-start badge rounded-pill bg-primary">{{product.marque}}</span>
+				<span class="float-end price-hp">{{product.prix}}&euro;</span>
+			<h5 class="card-title">{{product.description}}</h5>
+				<a href="{{ path('app_user_product_show', {'id' : product.id})}}" class="btn btn-warning">Check offer</a>
+</div>

@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Inscription
+{% endblock %}
+
+{% block body %}
+{{ form_start(registrationForm) }}
+	<h1>Register</h1>
+	<div class="container">
+		<div class="row">
+			<h4>Obligatoire</h4>
+			<div class="col-2">
+				{{ form_row(registrationForm.email) }}
+			</div>
+			<div class="col-2">
+				{{ form_row(registrationForm.plainPassword) }}
+			</div>
+		</div>
+		<hr>
+		<div class="row my-5">
+			<h4>Optionnel</h4>
+			<div class="col-2">
+				{{ form_row(registrationForm.prenom) }}
+			</div>
+			<div class="col-2">
+				{{ form_row(registrationForm.nom) }}
+			</div>
+			<div class="col-2">
+				{{ form_row(registrationForm.tel) }}
+			</div>
+			<div class="col-2">
+				{{ form_row(registrationForm.cp) }}
+			</div>
+		</div>
+		<div class="row">
+			<div class="col" id="width_adresse">
+				{{ form_row(registrationForm.adresse) }}
+			</div>
+			<div class="col-3">
+				{{ form_row(registrationForm.ville) }}
+			</div>
+			<div class="col-4">
+				{{ form_row(registrationForm.pays) }}
+			</div>
+		</div>
+        
+		<button type="submit" class="btn btn-primary my-5">S'inscrire</button>
+	</div>
+    
+        {{ form_end(registrationForm) }}
+{% endblock %}

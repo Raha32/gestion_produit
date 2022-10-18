@@ -1,0 +1,30 @@
+<nav class="navbar">
+	<ul>
+		<li class="brand">
+			<a class="navbar-brand" href="/home">Gestion_Produits</a>
+		</li>
+		{% if app.user %}
+			<li class="special deconnexion">
+				<a class="nav-link" aria-current="page" href="{{ path('app_logout') }}">Deconnexion</a>
+			</li>
+			<li>
+				<a class="nav-link" aria-current="page" href="{{ path('app_panier') }}">Panier</a>
+			</li>
+			{% if is_granted('ROLE_ADMIN') %}
+				<li>
+					<a class="nav-link" aria-current="page" href="{{ path('app_product_index') }}">Produits</a>
+				</li>
+				<li>
+					<a class="nav-link" aria-current="page" href="{{ path('app_category_index') }}">Categories</a>
+				</li>
+			{% endif %}
+		{% else %}
+			<li class="special">
+				<a class="nav-link" aria-current="page" href="{{ path('app_register') }}">Inscription</a>
+			</li>
+			<li class="special">
+				<a class="nav-link" aria-current="page" href="{{ path('app_login') }}">Connexion</a>
+			</li>
+		{% endif %}
+	</ul>
+</nav>

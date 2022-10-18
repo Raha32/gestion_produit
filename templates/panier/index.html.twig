@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello PanierController!{% endblock %}
+
+{% block body %}
+
+    <h1 class="titre-index">Index des paniers</h1>
+    <div class="flex-box">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Nom du produit</th>
+                <th>Marque</th>
+                <th>Image</th>
+                <th>Prix unitaire</th>
+                <th>Quantite</th>
+                <th>Total</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for row in panier %}
+            <tr>
+                <th>{{ row['product'].name }}</th>
+                <td>{{ row['product'].marque }}</td>
+                <td><img src="{{ asset('images/' ~ row['product'].image) }}"></td>
+                <td>{{ row['product'].prix }}&euro;</td>
+                
+                <td><a href="{{ path('app_effacer_quantite_produit', {'id': row['product'].id}) }}"><i class="fa-solid fa-square-minus"></i></a>
+                
+                {{ row['quantity'] }}
+                
+                <a href="{{ path('app_add_produit_panier', {'id': row['product'].id}) }}"><i class="fa-solid fa-square-plus"></i></a></td>
+                <td>{{ row['total']}}&euro;</td>
+                <td>
+                    <a href="{{ path('app_product_show', {'id': row['product'].id}) }}"><i class="fa-solid fa-eye"></i></a>
+                    <a href="{{ path('app_product_edit', {'id': row['product'].id}) }}"><i class="fa-solid fa-file-pen"></i></a>
+                    <a href="{{ path('app_effacer_produit', {'id': row['product'].id}) }}"><i class="fa-solid fa-trash"></i></a>
+                    
+                    
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+    <button><a href="{{ path('app_product_new') }}">Create new</a></button>
+    <a href="{{ path('app_effacer_panier')}}"><i class="fa-solid fa-file-pen"></i></a>
+{% endblock %}
+
+

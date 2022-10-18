@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Detail produit
+{% endblock %}
+
+{% block body %}
+
+
+<a href="{{ path('app_add_produit_panier', {'id' : product.id})}}" class="btn btn-warning">Ajouter au panier</a>
+
+{% endblock %}
