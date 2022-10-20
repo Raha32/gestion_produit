@@ -92,12 +92,25 @@ class Panier
         
         foreach ($panier as $id => $quantity) {
             $product = $this->productRepository->find($id);
-            $panier_detail [] = [
-                'product' => $product,
-                'quantity' => $quantity,
-                'total' => $quantity * $product->getPrix()
-            ];
+
+            if ($product) {
+                $panier_detail [] = [
+                    'product' => $product,
+                    'quantity' => $quantity,
+                    'total' => $quantity * $product->getPrix()
+                ];
+
+            }
         }
         return $panier_detail;
+    }
+
+    public function getTotalPanier(){
+        $panier=$this->getDetailPanier();
+        $totalTTC = 0;
+        foreach($panier as $row){
+            $totalTTC = $totalTTC + $row['total'];
+        }
+        return $totalTTC;
     }
 }

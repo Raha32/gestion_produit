@@ -40,11 +40,18 @@
                     
                 </td>
             </tr>
+            
         {% endfor %}
         </tbody>
     </table>
 </div>
-    <button><a href="{{ path('app_product_new') }}">Create new</a></button>
+
+    <h2>Total de votre commande : {{ totalTTC }}&euro;</h2>
+    {% if app.user %}
+    <button><a href="{{path('app_achat')}}">Valider le panier</button>
+    {% else %}
+    <button><a href="{{path('app_login')}}">Se connecter</button>
+    {% endif %}
     <a href="{{ path('app_effacer_panier')}}"><i class="fa-solid fa-file-pen"></i></a>
 {% endblock %}
 
