@@ -4,48 +4,67 @@
 {% endblock %}
 
 {% block body %}
-{{ form_start(registrationForm) }}
-	<h1>Register</h1>
-	<div class="container">
-		<div class="row">
+{% if app.user %}
+			<div class="warning-login">
+				Vous etes connecté en tant que
+				{{ app.user.userIdentifier }}
+				<button class="warning-button"><a href="{{ path('app_logout') }}">Deconnexion</a></button>
+			</div>
+            {% else %}
+	{{ form_start(registrationForm) }}
+	<h1 class="titre-index">Inscription</h1>
+	<div class="container-form">
+		<div class="container-login">
 			<h4>Obligatoire</h4>
-			<div class="col-2">
-				{{ form_row(registrationForm.email) }}
+			<div class="form-normal">
+				<div class="form-type">
+					{{ form_row(registrationForm.email)}}
+					<i class="fa-solid fa-envelope fa-lg"></i>
+				</div>
+				<div class="form-type">
+					{{ form_row(registrationForm.plainPassword) }}
+					<i class="fa-solid fa-lock fa-lg"></i>
+				</div>
 			</div>
-			<div class="col-2">
-				{{ form_row(registrationForm.plainPassword) }}
+			<hr>
+			<div class="form-normal">
+			<div class="form-extra-text">
+				<h4>Optionnel</h4>
+				<h6>Si vous souhaitez faire une commande</h6>
 			</div>
+				<div class="form-type">
+					{{ form_row(registrationForm.prenom) }}
+					<i class="fa-solid fa-user fa-lg"></i>
+				</div class="form-type">
+				<div class="form-type">
+					{{ form_row(registrationForm.nom) }}
+					<i class="fa-solid fa-user fa-lg"></i>
+				</div>
+				<div class="form-type">
+					{{ form_row(registrationForm.tel) }}
+					<i class="fa-solid fa-phone fa-lg"></i>
+				</div>
+				<div class="form-type location-dot">
+					{{ form_row(registrationForm.cp) }}
+					<i class="fa-solid fa-location-dot fa-lg"></i>
+				</div>
+				<div class="form-type location-dot">
+					{{ form_row(registrationForm.adresse) }}
+					<i class="fa-solid fa-location-dot fa-lg"></i>
+				</div>
+				<div class="form-type city">
+					{{ form_row(registrationForm.ville) }}
+					<i class="fa-solid fa-city fa-lg"></i>
+				</div>
+				<div class="form-type">
+					{{ form_row(registrationForm.pays) }}
+					<i class="fa-sharp fa-solid fa-flag fa-lg"></i>
+				</div>
+			</div>
+
+			<button type="submit" class="button-register">S'inscrire</button>
 		</div>
-		<hr>
-		<div class="row my-5">
-			<h4>Optionnel</h4>
-			<div class="col-2">
-				{{ form_row(registrationForm.prenom) }}
-			</div>
-			<div class="col-2">
-				{{ form_row(registrationForm.nom) }}
-			</div>
-			<div class="col-2">
-				{{ form_row(registrationForm.tel) }}
-			</div>
-			<div class="col-2">
-				{{ form_row(registrationForm.cp) }}
-			</div>
-		</div>
-		<div class="row">
-			<div class="col" id="width_adresse">
-				{{ form_row(registrationForm.adresse) }}
-			</div>
-			<div class="col-3">
-				{{ form_row(registrationForm.ville) }}
-			</div>
-			<div class="col-4">
-				{{ form_row(registrationForm.pays) }}
-			</div>
-		</div>
-        
-		<button type="submit" class="btn btn-primary my-5">S'inscrire</button>
 	</div>
-    
-        {{ form_end(registrationForm) }}
+	{{ form_end(registrationForm) }}
+	{% endif %}
 {% endblock %}

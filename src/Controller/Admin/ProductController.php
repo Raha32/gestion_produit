@@ -3,12 +3,15 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Product;
+use App\Entity\Pictures;
 use App\Form\ProductType;
+use App\Form\PicturesType;
 use App\Repository\ProductRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Repository\PicturesRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 #[Route('/admin/product')]
 class ProductController extends AbstractController
@@ -52,10 +55,31 @@ class ProductController extends AbstractController
     }
 
     #[Route('/{id}', name: 'app_product_show', methods: ['GET'])]
-    public function show(Product $product): Response
+    public function show(Product $product, Request $request, PicturesRepository $picturesRepository ): Response
     {
+        $picture = new Pictures();
+        $form = $this->createForm(PicturesType::class, $picture);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $pictures = $form->get('name')->getData();
+            if($pictures){
+                $new_name_picture = uniqid() . '.' . $pictures->guessExtension();
+                $pictures->move(
+                    $this->getParameter('upload_dir'),
+                    $new_name_picture
+                );
+                $picture->setName($new_name_picture);
+            }
+            $picture->setProduct($product);
+
+            $picturesRepository->save($picture, true);
+            return $this->redirectToRoute('app_product_show', ['id' => $product->getId()]);
+            
+        }
         return $this->render('product/show.html.twig', [
             'product' => $product,
+            'form' => $form->createView(),
         ]);
     }
 

@@ -11,12 +11,50 @@
                 <th>Id</th>
                 <td>{{ product.id }}</td>
             </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ product.name }}</td>
+            </tr>
+              <tr>  <th>Marque</th>
+                <td>{{ product.marque }}</td>
+                </tr>
+                <tr>
+                <th>Reference</th>
+                <td>{{ product.ref }}</td>
+                </tr>
+                <tr>
+                <th>Description</th>
+                <td>{{ product.description }}</td>
+                </tr>
+                <tr>
+                <th>Images</th>
+                {% for pictures in product.pictures %}
+                <td>
+                <div>
+                    <img src="{{ asset('images/' ~ pictures.name ) }}" alt="" style="width:250px;">
+                </div>
+                </td>
+                {% endfor %}
+                </tr>
+                <tr>
+                <th>Prix</th>
+                <td>{{ product.prix }}</td>
+                </tr>
+                <tr>
+                <th>Quantite</th>
+                <td>{{ product.quantity }}</td>
+                </tr>
+                <tr>
+                <th>Actions</th>
+                <td>
+                <a href="{{ path('app_product_edit', {'id': product.id}) }}">edit</a>
+                </td>
+            </tr>
         </tbody>
     </table>
-
     <a href="{{ path('app_product_index') }}">back to list</a>
 
-    <a href="{{ path('app_product_edit', {'id': product.id}) }}">edit</a>
+    <a href="{{ path('app_pictures_new', {'id' : product.id}) }}">Ajouter une image au produit</a>
 
     {{ include('product/_delete_form.html.twig') }}
 {% endblock %}

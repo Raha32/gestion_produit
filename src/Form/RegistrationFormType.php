@@ -18,13 +18,17 @@ class RegistrationFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('email')
+            ->add('email', null,[
+                'label' => false,
+                'attr' =>['placeholder' => 'E-mail',]]
+            )
             ->add('plainPassword', PasswordType::class, [
                 // instead of being set onto the object directly,
                 // this is read and encoded in the controller
-                 'label' => 'Mot de passe',
+                 'label' => false,
                 'mapped' => false,
-                'attr' => ['autocomplete' => 'new-password'],
+                'attr' => ['autocomplete' => 'new-password',
+                'placeholder' => 'Mot de passe',],
                 'constraints' => [
                     new NotBlank([
                         'message' => 'Please enter a password',
@@ -37,13 +41,27 @@ class RegistrationFormType extends AbstractType
                     ]),
                 ],
             ])
-            ->add('prenom')
-            ->add('nom')
-            ->add('tel', null, ['label' => 'Numero de telephone'])
-            ->add('adresse')
-            ->add('ville')
-            ->add('cp', null, ['label' => 'Code postal'])
-            ->add('pays')
+            ->add('prenom', null,[
+                'label' => false,
+                'attr' =>['placeholder' => 'Prénom',]])
+            ->add('nom', null,[
+                'label' => false,
+                'attr' =>['placeholder' => 'Nom',]])
+            ->add('tel', null,[
+                'label' => false,
+                'attr' =>['placeholder' => 'Numéro de téléphone',]])
+            ->add('adresse', null,[
+                'label' => false,
+                'attr' =>['placeholder' => 'Adresse',]])
+            ->add('ville', null,[
+                'label' => false,
+                'attr' =>['placeholder' => 'Ville',]])
+            ->add('cp', null,[
+                'label' => false,
+                'attr' =>['placeholder' => 'Code Postal',]])
+            ->add('pays', null,[
+                'label' => false,
+                'attr' =>['placeholder' => 'Pays de résidence',]])
             ;
             
     }

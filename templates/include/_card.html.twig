@@ -1,7 +1,15 @@
-<div class="card-exterior">
-		<img src="{{ asset('images/' ~ product.image) }}" class="card-img" alt="...">
-				<span class="float-start badge rounded-pill bg-primary">{{product.marque}}</span>
-				<span class="float-end price-hp">{{product.prix}}&euro;</span>
-			<h5 class="card-title">{{product.description}}</h5>
-				<a href="{{ path('app_user_product_show', {'id' : product.id})}}" class="btn btn-warning">Check offer</a>
-</div>
+
+	<div class="product-card">
+		<div class="product-image">
+			<img src="{{ asset('images/' ~ product.image) }}" class="card-img" alt="...">
+		</div>
+		<div class="product-info">
+			<h4>{{product.marque}}</h4>
+			<h5>{{ product.name }}</h5>
+			<h5>{{product.prix}}&euro;</h5>
+			<button>
+				<a href="{{ path('app_user_product_show', {'id' : product.id})}}">Check offer</a>
+			</button>
+		</div>
+	</div>
+
