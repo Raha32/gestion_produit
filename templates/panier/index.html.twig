@@ -6,7 +6,7 @@
 {% block body %}
 
 	<h1 class="titre-index">Détails de votre panier</h1>
-	<div class="container">
+	<div class="container-panier">
 		<div class="container-achat">
 			{% for row in panier %}
 				<div class="product-container">
@@ -16,35 +16,50 @@
 					<div class="product-detail">
 						<div>{{ row['product'].name }}</div>
 						<div>
-                            <a href="{{ path('app_effacer_quantite_produit', {'id': row['product'].id}) }}"><i class="fa-solid fa-square-minus"></i></a>
+							<a href="{{ path('app_effacer_quantite_produit', {'id': row['product'].id}) }}">
+								<i class="fa-solid fa-square-minus"></i>
+							</a>
 
-                        {{ row['quantity'] }}
+							{{ row['quantity'] }}
 
-                            <a href="{{ path('app_add_produit_panier', {'id': row['product'].id}) }}"><i class="fa-solid fa-square-plus"></i></a>
-                        </div>
+							<a href="{{ path('app_add_produit_panier', {'id': row['product'].id}) }}">
+								<i class="fa-solid fa-square-plus"></i>
+							</a>
+						</div>
 						<div class="price">{{ row['product'].prix }}
 							&euro;</div>
 
 					</div>
 					<div class="test">
 						<a href="{{ path('app_effacer_produit', {'id' : row['product'].id}) }}">
-							<button class="danger-button-sm">Supprimer</button>
+							<button class="danger-button-md">Supprimer</button>
 						</a>
 					</div>
 				</div>
 			{% endfor %}
 		</div>
-
-		<h2>Total de votre commande :
-			{{ totalTTC }}&euro;</h2>
-		{% if app.user %}
-			<button>
-				<a href="{{path('app_achat')}}">Valider le panier</button>
+		<div class="container-validation">
+			<h2>Total panier :
+				{{ totalTTC }}&euro;</h2>
+				<hr>
+			{% if app.user %}
+			{% if panier is not empty %}
+			<button class="button-login">
+					<a href="{{path('app_achat')}}">Valider le panier</button>
 			{% else %}
-				<button>
-					<a href="{{path('app_login')}}">Se connecter</button>
-				{% endif %}
-				<a href="{{ path('app_effacer_panier')}}">
-					<i class="fa-solid fa-file-pen"></i>
-				</a>
+				<button class="grey-button">
+					Veuillez rajouter un article</button>
+			{% endif %}
+				{% else %}
+					<button>
+						<a href="{{path('app_login')}}">Se connecter</button>
+					{% endif %}
+					{% if panier is not empty %}
+					<button class="danger-button">
+					<a href="{{ path('app_effacer_panier')}}">
+						Effacer le panier
+					</a>
+					</button>
+					{% endif %}
+				</div>
 			{% endblock %}

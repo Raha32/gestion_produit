@@ -5,7 +5,19 @@
 
 {% block body %}
 
-
-<a href="{{ path('app_add_produit_panier', {'id' : product.id})}}" class="btn btn-warning">Ajouter au panier</a>
-
+<div class="container-panier">
+    <div class="container-achat">
+    <div class="product-container">
+        <img src="{{ asset('images/' ~ product.image) }}" class="detail-product-image">
+        <div class="product-detail">
+        <h2>{{ product.name }}</h2>
+        <h2>{{ product.ref}}</h2>
+        <h3>{{ product.prix }} &euro;</h3>
+        </div>
+    </div>
+    </div>
+</div>
+<button class="warning-button">
+<a href="{{ path('app_add_produit_panier', {'id' : product.id})}}" >Ajouter au panier</a>
+</button>
 {% endblock %}
